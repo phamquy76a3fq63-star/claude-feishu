@@ -1,0 +1,8 @@
+{
+  "name": "claude-feishu",
+  "version": "1.0.0",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "@larksuiteoapi/node-sdk": "^1.20.0"
+  }
+}
