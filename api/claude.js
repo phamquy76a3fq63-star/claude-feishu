@@ -1,8 +1,10 @@
 module.exports = async function(req, res) {
+  console.log('收到请求:', req.method, JSON.stringify(req.body));
   const params = req.body || {};
 
   // 最优先处理 Challenge 验证，不加载任何依赖
   if (params.challenge) {
+    console.log('Challenge:', params.challenge);
     return res.json({ challenge: params.challenge });
   }
 
