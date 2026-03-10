@@ -1,13 +1,14 @@
-const lark = require('@larksuiteoapi/node-sdk');
-const axios = require('axios');
-
 module.exports = async function(req, res) {
   const params = req.body || {};
 
-  // 优先处理 Challenge 验证，避免超时
+  // 最优先处理 Challenge 验证，不加载任何依赖
   if (params.challenge) {
     return res.json({ challenge: params.challenge });
   }
+
+  // 懒加载，仅在需要时才加载 SDK
+  const lark = require('@larksuiteoapi/node-sdk');
+  const axios = require('axios');
 
   const APPID = process.env.APPID;
   const SECRET = process.env.SECRET;
@@ -59,7 +60,7 @@ module.exports = async function(req, res) {
     text = text.replace(new RegExp(`@${BOTNAME}`, 'g'), '').trim();
   }
 
-  // 先返回 200，再异步处理，避免飞书超时重试
+  // 先返回 200，再异步处理
   res.json({ msg: 'success' });
 
   try {
