@@ -10,7 +10,7 @@ const client = new lark.Client({ appId: APPID, appSecret: SECRET });
 
 async function askClaude(question) {
   const response = await axios.post(
-    'https://api.anthropic.com/v1/messages',
+    'https://www.openclaudecode.cn/v1/messages',
     {
       model: 'claude-sonnet-4-6',
       max_tokens: 1024,
